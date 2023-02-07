@@ -13,7 +13,8 @@ type Props = {
 const PokemonCard: FunctionComponent<Props> = ({pokemon, borderColor='#009688'}) => {
 
   const [color, setColor]  = useState<String>();
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
 
   const showBorder = () => {
     setColor(borderColor);
@@ -25,7 +26,7 @@ const PokemonCard: FunctionComponent<Props> = ({pokemon, borderColor='#009688'})
 
   const goToPokemon = (id:number)=>{
     navigate(`/pokemons/${id}`)
-  }
+  };
     
   return (
     <div className="col s6 m4" onMouseEnter={showBorder} onMouseLeave={hideBorder} onClick={() => goToPokemon(pokemon.id)}>
