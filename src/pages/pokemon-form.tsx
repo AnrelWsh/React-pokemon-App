@@ -68,6 +68,45 @@ const PokemonForm: FunctionComponent<Props> = ({pokemon}) => {
     console.log(form);
     navigate(`/pokemons/${pokemon.id}`)
   }
+
+  const validateForm = () => {
+    let newForm: Form = form;
+
+    if(!/^[a-zA-Zàéè]{3-25}$/.test(form.name.value)){
+      const errorMsg: string = "Le nom du Pokémon est requis (3 à 25 caractères).";
+      const newField: Field = {value: form.name.value, error: errorMsg, isValid: false};
+      newForm = {...newForm, ...{name: newField}};
+    }else {
+      const newField: Field = {value: form.name.value, error: '', isValid: true};
+      newForm = {...newForm, ...{name: newField}};
+    }
+  
+    if(!/^[0-9]{1,3}$/.test(form.hp.value)){
+      const errorMsg: string = "Les points de vie doivent être compris entre 0 et 999";
+      const newField: Field = {value: form.hp.value, error: errorMsg, isValid: false};
+      newForm = {...newForm, ...{name: newField}};
+    }else {
+      const newField: Field = {value: form.hp.value, error: '', isValid: true};
+      newForm = {...newForm, ...{name: newField}};
+    }
+
+    if(!/^[0-9]{1,2}$/.test(form.cp.value)){
+      const errorMsg: string = "Les dégats doivent être compris entre 0 et 99";
+      const newField: Field = {value: form.cp.value, error: errorMsg, isValid: false};
+      newForm = {...newForm, ...{name: newField}};
+    }else {
+      const newField: Field = {value: form.cp.value, error: '', isValid: true};
+      newForm = {...newForm, ...{name: newField}};
+    }
+
+    setForm(newForm);
+    return newForm.name.isValid && newForm.hp.isValid && newForm.cp.isValid;
+  }
+
+  const isTypesValid = (type:string): boolean => {
+
+    if(fo)
+  }
    
   return (
     <form onSubmit={e => handleSubmit(e)}>
